@@ -30,10 +30,19 @@ export const DashboardItem: React.FunctionComponent<DashboardItemProps> = ({
 }) => {
   // context:
   const {
-    state: { full }
+    state: { full, layout }
   } = React.useContext(DashboardContext)
+
+  const isOne = layout.length === 1
+
   return (
-    <Box className={cx('DashboardItem', i === 'pl' && 'pl')} bg="second" display="block" h="full" w="full">
+    <Box
+      className={cx('DashboardItem', i === 'pl' && 'pl')}
+      bg="second"
+      display="block"
+      h="full"
+      w="full"
+    >
       {i !== 'pl' && (
         <Box
           className={cx('DashboardItem__header')}
@@ -47,8 +56,18 @@ export const DashboardItem: React.FunctionComponent<DashboardItemProps> = ({
             {label}
           </Headline>
           <Box w="auto">
-            <Icon className="draghandler" mr="3" name="arrows" cursor="hover:move" />
-            <Icon btn mr="3" name="trash" hover="third" textProps={{ onClick: () => onClose(i) }} />
+            {!full && !isOne && (
+              <Icon className="draghandler" mr="3" name="arrows" cursor="hover:move" />
+            )}
+            {!full && (
+              <Icon
+                btn
+                mr="3"
+                name="trash"
+                hover="third"
+                textProps={{ onClick: () => onClose(i) }}
+              />
+            )}
             <Icon
               btn
               name={full ? 'compress' : 'expand'}
