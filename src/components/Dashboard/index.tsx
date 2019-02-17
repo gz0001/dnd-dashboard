@@ -7,7 +7,8 @@ import { DashboardContext, initialState, reducer } from 'context/dashboard'
 import { toggleNav } from 'context/dashboard/actions'
 
 // Components:
-import { Icon } from 'components/Icon'
+import { DasboardNav } from './DashboardNav'
+import { DashboardContent } from './DashboardContent'
 
 // Styles:
 import './style.css'
@@ -21,7 +22,7 @@ export const Dashboard: React.FunctionComponent = props => {
 
   return (
     <DashboardContext.Provider value={{ state, dispatch }}>
-      <Box className={cx('Dashboard')} bg="first-dark" flex="col" h="screen" text="white" w="full">
+      <Box className={cx('Dashboard')} bg="first-dark" flex="col" h="screen" overflow="hidden" text="white" w="full">
         <Box className="Dashboard__header" items="end" justify="between" px="12">
           <Button
             className="Dashboard__toggle-nav"
@@ -37,6 +38,10 @@ export const Dashboard: React.FunctionComponent = props => {
             />
             <span>Widgets</span>
           </Button>
+        </Box>
+        <Box className="Dashboard__main">
+          <DasboardNav open={open} />
+          <DashboardContent />
         </Box>
       </Box>
     </DashboardContext.Provider>

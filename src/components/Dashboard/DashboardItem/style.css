@@ -1,0 +1,9 @@
+.InqDashboardItem {
+  &__header {
+    
+    height: 20%;
+    .full & {
+      height: 10%;
+    }
+  }
+}

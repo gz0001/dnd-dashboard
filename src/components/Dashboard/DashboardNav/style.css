@@ -1,0 +1,26 @@
+.DashboardNav {
+  width: 10rem;
+  margin-left: -10rem;
+  transition: margin-left 0.6s ease;
+  &.open {
+    margin-left: 0;
+  }
+  & * {
+    user-select: none;
+  }
+  &__content {
+    padding: 0 1.625rem;
+  }
+  &__item {
+    height: 7.5rem;
+    &.grabbable {
+      cursor: grab;
+      &:active {
+        cursor: grabbing;
+      }
+    }
+  }
+  &__check {
+    transform: translate(50%, -50%);
+  }
+}

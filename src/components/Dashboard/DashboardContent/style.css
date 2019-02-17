@@ -1,0 +1,20 @@
+.DashboardContent {
+  &__wrapper {
+    width: 95%;
+    height: 97%;
+  }
+  &__item {
+    will-change: width, height, transform;
+    transition-property: width, height, transform;
+    transition: width 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), height 0.6s, transform .3s;
+    &.react-grid-item.cssTransforms {
+      transition-property: width, height, transform;
+      &.placeholder {
+        transition-property: transform;
+      }
+    }
+  }
+  .react-grid-item.react-grid-placeholder {
+    background-color: transparent;
+  }
+}
