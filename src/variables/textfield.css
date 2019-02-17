@@ -1,0 +1,24 @@
+:root {
+  --textfield-padding: 1rem;
+  --textfield-material-padding: 1rem 0rem 0.5rem;
+  --textfield-background: var(--grey);
+  --textfield-material-background: transparent;
+  /** Border: */
+  --textfield-border: var(--border);
+  --textfield-border-radius: var(--border-radius);
+  --textfield-material-border-thickness: 1.5px;
+  --textfield-material-border-thickness-active: 2px;
+  --textfield-material-border: var(--textfield-material-border-thickness) solid var(--grey);
+  --textfield-material-border-hover: var(--textfield-material-border-thickness-active) solid #000;
+  --textfield-material-border-active: var(--textfield-material-border-thickness-active) solid var(--first);
+  /** Label: */
+  --textfield-label-color: var(--grey-dark);
+  --textfield-label-color-active: var(--first);
+  --textfield-label-top: -0.75rem;
+  /** List: */
+  --textfield-list-height: 18.75rem;
+  --textfield-list-background: #fff;
+  /* List item: **/
+  --textfield-list-item-height: 3.25rem;
+  --textfield-list-item-active-background: var(--grey-dark);
+}

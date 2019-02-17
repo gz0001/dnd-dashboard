@@ -1,0 +1,20 @@
+:root {
+  /* Font sizes: **/
+  --tiny: 0.5rem;
+  --small: 0.75rem;
+  --base: 1rem;
+  --large: 1.25rem;
+  --icon: 1.2rem;
+
+  /* Line height: **/
+  --line-height: 1.4;
+  --text-margin-bottom: 0.75rem;
+
+  /* Headline size: **/
+  --h1-size: calc(var(--base) * 2);
+  --h2-size: calc(var(--base) * 1.5);
+  --h3-size: calc(var(--base) * 1.25);
+  --h4-size: calc(var(--base) * 1);
+  --h5-size: calc(var(--base) * .875);
+  --h6-size: calc(var(--base) * .75);
+}

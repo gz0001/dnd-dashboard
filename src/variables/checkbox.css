@@ -1,0 +1,21 @@
+:root {
+  /* Size: **/
+  --checkbox-size: 1.5rem;
+  --checkbox-small-size: 1.25rem;
+  --checkmark-color: var(--first);
+
+  /* Color: **/
+  --checkbox-background: var(--grey);
+
+  /* Checkmark: **/
+  --checkbox-mark-color: var(--third);
+  --checkbox-mark-width: 48%;
+  --checkbox-mark-height: 24%;
+  --checkbox-mark-thickness: 2px;
+  --checkbox-mark-border: var(--checkbox-mark-thickness) solid var(--checkbox-mark-color);
+
+  /* Label: **/
+  --checkbox-label-fontSize: var(--base);
+  --checkbox-label-small-fontSize: var(--small);
+  --checkbox-label-marginLeft: var(--small);
+}

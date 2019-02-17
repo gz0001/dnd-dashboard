@@ -1,0 +1,42 @@
+:root {
+  --selectbox-padding: 0.75rem;
+  --selectbox-material-padding: 0.75rem 0;
+  --selectbox-native-material-padding: 1rem 0 0.75rem 0;
+  --selectbox-background: var(--first);
+  --selectbox-background-active: var(--first);
+  --selectbox-material-background: transparent;
+  --selectbox-color: #fff;
+  --selectbox-color-active: #fff;
+  /** Border: */
+  --selectbox-border: var(--border);
+  --selectbox-border-radius: var(--border-radius);
+  --selectbox-material-border-thickness: 1.5px;
+  --selectbox-material-border-thickness-active: 2px;
+  --selectbox-material-border: var(--selectbox-material-border-thickness) solid var(--grey);
+  --selectbox-material-border-hover: var(--selectbox-material-border-thickness-active) solid #000;
+  /** Label: */
+  --selectbox-label-color: var(--grey-dark);
+  --selectbox-label-top: -100%;
+  --selectbox-native-label-top: -150%;
+  /** List: */
+  --selectbox-list-border: var(--border);
+  --selectbox-list-border-radius: var(--border-radius);
+  --selectbox-list-height: 18.75rem;
+  --selectbox-list-background: #fff;
+  /* List item: **/
+  --selectbox-list-item-height: 3.25rem;
+  --selectbox-list-item-background: transparent;
+  --selectbox-list-item-active-background: var(--grey-dark);
+  --selectbox-selecting-border: 2px solid #000;
+  --selectbox-list-item-padding: 0 0.5rem;
+  /* Checkbox **/
+  --selectbox-checkbox-size: 1rem;
+  --selectbox-checkbox-border: 1px solid #000;
+  --selectbox-checkbox-border-radius: 2.5px;
+  --selectbox-checkbox-border-active: 1px solid #fff;
+  --selectbox-checkmark-height: 55%;
+  --selectbox-checkmark-width: 25%;
+  --selectbox-checkmark-border: 1px solid #fff;
+  /* Submit button **/
+  --selectbox-submit-background: var(--grey-dark);
+}
