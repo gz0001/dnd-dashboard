@@ -148,7 +148,7 @@ export const DashboardContent: React.FunctionComponent<DashboardContentProps> = 
   }
 
   const getPosition = (e: React.DragEvent<HTMLDivElement>) => {
-    const clientRect =  grid.getBoundingClientRect()
+    const clientRect = grid.getBoundingClientRect()
     const left = e.clientX - clientRect.left
     const top = e.clientY - clientRect.top
     const x = top <= clientRect.height / 2 ? 0 : 1
@@ -203,14 +203,83 @@ export const DashboardContent: React.FunctionComponent<DashboardContentProps> = 
           break
       }
     }
-    
+  }
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    let [_x, _y] = getPosition(e)
+    let newLayout = clone(layout)
+    const plIndex = newLayout.findIndex((item: any) => item.i === 'pl')
+    if (plIndex > -1) {
+      switch (newLayout.length) {
+        case 2:
+          newLayout[0].y = _x
+          newLayout[1].y = _x === 0 ? 1 : 0
+          break
+        case 3:
+          if (_x < 1) {
+            let full = newLayout.findIndex((item: any) => item.w === 2)
+            if (full !== plIndex) {
+              newLayout[full].x = newLayout[plIndex].x
+              newLayout[full].y = newLayout[plIndex].y
+              newLayout[full].w = 1
+              newLayout[plIndex].x = 0
+              newLayout[plIndex].y = 0
+              newLayout[plIndex].w = 2
+            }
+          } else {
+            if (newLayout[plIndex].w === 2) {
+              newLayout = reorder(newLayout)
+              let cIndex = _y < 1 ? 1 : 2
+              newLayout[plIndex].x = newLayout[cIndex].x
+              newLayout[plIndex].y = newLayout[cIndex].y
+              newLayout[cIndex].x = 0
+              newLayout[cIndex].y = 0
+              newLayout[cIndex].w = 2
+            } else {
+              let cIndex = -1
+              if (_y < 1) {
+                if (newLayout[plIndex].x > 0) {
+                  cIndex = newLayout.findIndex((item: any) => item.i !== 'pl' && item.w === 1)
+                }
+              } else {
+                if (newLayout[plIndex].x < 1) {
+                  cIndex = newLayout.findIndex((item: any) => item.i !== 'pl' && item.w === 1)
+                }
+              }
+              if (cIndex > -1) {
+                newLayout[cIndex].x = newLayout[plIndex].x
+                newLayout[plIndex].x = _y
+              }
+            }
+            newLayout[plIndex].w = 1
+          }
+          break
+        case 4:
+          if (_x !== _y) {
+            const c = _x
+            _x = _y
+            _y = c
+          }
+          if (newLayout[plIndex].x !== _x || newLayout[plIndex].y !== _y) {
+            let cIndex = newLayout.findIndex((item: any) => item.x === _x && item.y === _y)
+            newLayout[cIndex].x = newLayout[plIndex].x
+            newLayout[cIndex].y = newLayout[plIndex].y
+            newLayout[plIndex].x = _x
+            newLayout[plIndex].y = _y
+          }
+        default:
+          break
+      }
+      !isEqual(newLayout, layout) && setState({ layout: newLayout })
+    }
   }
 
   return (
     <SizeMe monitorHeight refreshRate={200} refreshMode="debounce">
       {({ size }: any) => (
         <Box
-          divProps={{ onDragEnter: handleDragEnter }}
+          divProps={{ onDragEnter: handleDragEnter, onDragOver: handleDragOver }}
           className={cx('DashboardContent')}
           flex="1"
           items="center"
