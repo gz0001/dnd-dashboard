@@ -35,6 +35,9 @@ const reorder = (layout: any) => {
 export interface DashboardContentProps {}
 
 export const DashboardContent: React.FunctionComponent<DashboardContentProps> = ({}) => {
+  // Items:
+  const items = ['a', 'b', 'c', 'd']
+
   // Contexts:
   const {
     state: { dragging, full },
@@ -58,7 +61,8 @@ export const DashboardContent: React.FunctionComponent<DashboardContentProps> = 
   let grid = document.getElementsByClassName('DashboardContent__wrapper')[0]
 
   React.useEffect(() => {
-    grid = document.getElementsByClassName('DashboardContent__wrapper')[0]
+    const plIndex = layout.findIndex(item => item.i === 'pl')
+    !dragging && plIndex >= 0 && handleClose('pl')
   })
 
   // Handlers:
@@ -128,7 +132,7 @@ export const DashboardContent: React.FunctionComponent<DashboardContentProps> = 
         newLayout[0].h = 2
     }
     setState({ layout: newLayout })
-    dispatch(updateLayout(newLayout))
+    i !== 'pl' && dispatch(updateLayout(newLayout))
   }
 
   const handleFullScreen = (i: string) => {
@@ -275,11 +279,45 @@ export const DashboardContent: React.FunctionComponent<DashboardContentProps> = 
     }
   }
 
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    const type = e.dataTransfer.getData('type')
+    let newLayout = clone(layout)
+    const index = newLayout.findIndex((item: any) => item.i === 'pl')
+    if (items.includes(type)) {
+      switch (newLayout.length) {
+        case 0:
+          newLayout = [{ i: type, x: 0, y: 0, w: 2, h: 1 }]
+          setState({ layout: newLayout })
+          setTimeout(() => {
+            newLayout[0].h = 2
+            setState({ layout: newLayout })
+          }, 200)
+          break
+        case 2:
+        case 3:
+        case 4:
+          if (index > -1) {
+            newLayout[index].i = type
+            setState({ layout: newLayout })
+          }
+          break
+        default:
+          break
+      }
+      dispatch(updateLayout(newLayout))
+    }
+  }
+
   return (
     <SizeMe monitorHeight refreshRate={200} refreshMode="debounce">
       {({ size }: any) => (
         <Box
-          divProps={{ onDragEnter: handleDragEnter, onDragOver: handleDragOver }}
+          divProps={{
+            onDragEnter: handleDragEnter,
+            onDragOver: handleDragOver,
+            onDrop: handleDrop
+          }}
           className={cx('DashboardContent')}
           flex="1"
           items="center"
