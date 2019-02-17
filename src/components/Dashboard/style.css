@@ -1,3 +1,23 @@
 .Dashboard {
-  background-color: turquoise;
+  &__header {
+    height: 10%;
+  }
+  &__toggle-nav {
+    &:hover {
+      span {
+        color: var(--third);
+      }
+    }
+    span {
+      color: white;
+      transform: scaleX(1);
+      transition: color .3s ease, transform .3s ease;
+    }
+    &Icon.open {
+      transform: scaleX(-1);
+    }
+  }
+  &__main {
+    height: 90%;
+  }
 }

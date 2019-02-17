@@ -8,7 +8,6 @@ type State = {
   layout: any
 }
 
-
 type Ctx = {
   state?: State
   dispatch?: Dispatch<any>
