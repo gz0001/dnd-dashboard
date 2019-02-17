@@ -1,6 +1,9 @@
-.InqDashboardItem {
+.DashboardItem {
+  &.pl {
+    border: dashed 2px #fff;
+    background-color: transparent;
+  }
   &__header {
-    
     height: 20%;
     .full & {
       height: 10%;
