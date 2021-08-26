@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^3.4.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
-    "classnames": "^2.2.6",
+    "classnames": "^2.3.1",
     "react": "16.8.2",
     "react-dom": "16.8.2",
     "react-grid-layout": "^0.16.6",
@@ -37,5 +37,6 @@
     "@types/react": "^16.8.3",
     "@types/react-dom": "^16.8.1",
     "@types/react-router-dom": "^4.3.1"
-  }
+  },
+  "homepage": "https://gz0001.github.io/dnd-dashboard"
 }
